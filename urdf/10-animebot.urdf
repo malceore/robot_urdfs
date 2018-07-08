@@ -1,0 +1,247 @@
+<?xml version="1.0"?>
+<robot name="animebot">
+
+  <!-- Sensors -->
+  <sensor name="camera" update_rate="27">
+    <parent link="head"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <camera>
+      <image width="640" height="480" hfov="1.5708" format="RGB8" near="0.01" far="50.0"/>
+    </camera>
+  </sensor>
+
+  <link name="head">
+    <visual>
+      <origin rpy="1.5 0 0" xyz="0 0 0.065"/>
+      <geometry>
+        <mesh filename="package://urdf_tutorial/meshes/anime_robot_head.dae" scale="15.0 15.0 15.0"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <link name="base_link">
+    <visual>
+      <origin rpy="1.5 0 0" xyz="0 0 0.05"/>
+      <geometry>
+        <mesh filename="package://urdf_tutorial/meshes/anime_robot_upper_torso.dae" scale="15.0 15.0 15.0"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <link name="l_torso">
+    <visual>
+      <origin rpy="1.5 0 0" xyz="0 0 0.03"/>
+      <geometry>
+        <mesh filename="package://urdf_tutorial/meshes/anime_robot_lower_torso.dae" scale="15 15 15" />
+      </geometry>
+    </visual>
+  </link>
+
+
+  <!-- Arm Links -->
+  <link name="r_upper_arm">
+    <visual>
+      <origin rpy="1.5 0 0" xyz="0 -0.02 -0.1"/>
+      <geometry>
+        <mesh filename="package://urdf_tutorial/meshes/anime_robot_right_upper_arm.dae" scale="15 15 15"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="r_lower_arm">
+    <visual>
+      <origin rpy="1.5 0 0" xyz="0 -0.02 -0.1"/>
+      <geometry>
+        <mesh filename="package://urdf_tutorial/meshes/anime_robot_lower_arm.dae" scale="15 15 15" />
+      </geometry>
+    </visual>
+  </link>
+  <link name="r_hand">
+    <visual>
+      <origin rpy="1.5 0 0" xyz="0.0 -0.02 -0.04"/>
+      <geometry>
+        <mesh filename="package://urdf_tutorial/meshes/anime_robot_left_hand.dae" scale="15 15 15" />
+      </geometry>
+    </visual>
+  </link>
+
+
+
+  <link name="l_upper_arm">
+    <visual>
+      <origin rpy="1.5 0 0" xyz="0 -0.02 -0.1"/>
+      <geometry>
+        <mesh filename="package://urdf_tutorial/meshes/anime_robot_left_upper_arm.dae" scale="15 15 15"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="l_lower_arm">
+    <visual>
+      <origin rpy="1.5 0 0" xyz="0 -0.02 -0.1"/>
+      <geometry>
+        <mesh filename="package://urdf_tutorial/meshes/anime_robot_lower_arm.dae" scale="15 15 15" />
+      </geometry>
+    </visual>
+  </link>
+  <link name="l_hand">
+    <visual>
+      <origin rpy="1.5 0 0" xyz="0.0 -0.02 -0.04"/>
+      <geometry>
+        <mesh filename="package://urdf_tutorial/meshes/anime_robot_right_hand.dae" scale="15 15 15" />
+      </geometry>
+    </visual>
+  </link>
+
+  <!-- Leg links -->
+  <link name="r_upper_leg">
+    <visual>
+      <origin rpy="1.5 0 0" xyz="0 -0.05 -0.025"/>
+      <geometry>
+        <mesh filename="package://urdf_tutorial/meshes/anime_robot_right_upper_leg.dae" scale="15 15 15"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="r_lower_leg">
+    <visual>
+      <origin rpy="1.5 0 0" xyz="0.0 -0.02 -0.18"/>
+      <geometry>
+        <mesh filename="package://urdf_tutorial/meshes/anime_robot_lower_leg.dae" scale="15 15 15" />
+      </geometry>
+    </visual>
+  </link>
+  <link name="r_foot">
+    <visual>
+      <origin rpy="1.5 0 0" xyz="0 -0.02 -0.1"/>
+      <geometry>
+        <mesh filename="package://urdf_tutorial/meshes/anime_robot_foot.dae" scale="15 15 15"/>
+      </geometry>
+    </visual>
+  </link>
+
+
+  <link name="l_upper_leg">
+    <visual>
+      <origin rpy="1.5 0 0" xyz="0 -0.05 -0.025"/>
+      <geometry>
+        <mesh filename="package://urdf_tutorial/meshes/anime_robot_left_upper_leg.dae" scale="15 15 15"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="l_lower_leg">
+    <visual>
+      <origin rpy="1.5 0 0" xyz="0.0 -0.02 -0.18"/>
+      <geometry>
+        <mesh filename="package://urdf_tutorial/meshes/anime_robot_lower_leg.dae" scale="15 15 15" />
+      </geometry>
+    </visual>
+  </link>
+  <link name="l_foot">
+    <visual>
+      <origin rpy="1.5 0 0" xyz="0 -0.02 -0.1"/>
+      <geometry>
+        <mesh filename="package://urdf_tutorial/meshes/anime_robot_foot.dae" scale="15 15 15"/>
+      </geometry>
+    </visual>
+  </link>
+
+
+  <!--  JOINTS SECTION   -->
+  <joint name="neck" type="continuous">
+    <parent link="base_link"/>
+    <child link="head"/>
+    <axis xyz="0 0 1"/>
+    <origin rpy="0 0 0" xyz="0 0 0.23"/>
+  </joint>
+  <joint name="waist" type="continuous">
+    <parent link="base_link"/>
+    <child link="l_torso"/>
+    <axis xyz="0 0 1"/>
+    <origin rpy="0 0 0" xyz="0 0 -0.25"/>
+  </joint>
+
+
+  <joint name="r_shoulder" type="continuous">
+    <parent link="base_link"/>
+    <child link="r_upper_arm"/>
+    <axis xyz="1 0 0"/>
+    <origin rpy="0 0 0" xyz="0.2 0 0.04"/>
+  </joint>
+  <!-- -->
+  <joint name="r_elbow" type="continuous">
+    <parent link="r_upper_arm"/>
+    <child link="r_lower_arm"/>
+    <axis xyz="1 0 0"/>
+    <origin rpy="0 0 0" xyz="-0.01 -0.01 -0.25"/>
+  </joint>
+  <joint name="r_wrist" type="continuous">
+    <parent link="r_lower_arm"/>
+    <child link="r_hand"/>
+    <axis xyz="1 0 0"/>
+    <origin rpy="0 0 0" xyz="0.0 -0.015 -0.28"/>
+  </joint>
+
+
+
+  <joint name="l_shoulder" type="continuous">
+    <parent link="base_link"/>
+    <child link="l_upper_arm"/>
+    <axis xyz="1 0 0"/>
+    <origin rpy="0 0 0" xyz="-0.2 0 0.04"/>
+  </joint>
+  <!-- -->
+  <joint name="l_elbow" type="continuous">
+    <parent link="l_upper_arm"/>
+    <child link="l_lower_arm"/>
+    <axis xyz="1 0 0"/>
+    <origin rpy="0 0 0" xyz="-0.01 -0.01 -0.25"/>
+  </joint>
+  <joint name="l_wrist" type="continuous">
+    <parent link="l_lower_arm"/>
+    <child link="l_hand"/>
+    <axis xyz="1 0 0"/>
+    <origin rpy="0 0 0" xyz="0.0 -0.015 -0.28"/>
+  </joint>
+
+
+  <joint name="r_hip" type="continuous">
+    <parent link="l_torso"/>
+    <child link="r_upper_leg"/>
+    <axis xyz="1 0 0"/>
+    <origin rpy="0 0 0" xyz="-0.1 0.05 -0.1"/>
+  </joint>
+  <!-- -->
+  <joint name="r_knee" type="continuous">
+    <parent link="r_upper_leg"/>
+    <child link="r_lower_leg"/>
+    <axis xyz="1 0 0"/>
+    <origin rpy="0 0 0" xyz="0.04 -0.07 -0.47"/>
+  </joint>
+  <joint name="r_ankle" type="continuous">
+    <parent link="r_lower_leg"/>
+    <child link="r_foot"/>
+    <axis xyz="1 0 0"/>
+    <origin rpy="0 0 0" xyz="0.005 -0.025 -0.5"/>
+  </joint>
+
+
+  <joint name="l_hip" type="continuous">
+    <parent link="l_torso"/>
+    <child link="l_upper_leg"/>
+    <axis xyz="1 0 0"/>
+    <origin rpy="0 0 0" xyz="0.1 0.05 -0.1"/>
+  </joint>
+  <!-- -->
+  <joint name="l_knee" type="continuous">
+    <parent link="l_upper_leg"/>
+    <child link="l_lower_leg"/>
+    <axis xyz="1 0 0"/>
+    <origin rpy="0 0 0" xyz="-0.02 -0.07 -0.47"/>
+  </joint>
+  <joint name="l_ankle" type="continuous">
+    <parent link="l_lower_leg"/>
+    <child link="l_foot"/>
+    <axis xyz="1 0 0"/>
+    <origin rpy="0 0 0" xyz="0.005 -0.025 -0.5"/>
+  </joint>
+
+
+</robot>
